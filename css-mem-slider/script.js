@@ -20,6 +20,7 @@ class Slider {
     #controls;
     #length;
     #data;
+    #position;
     constructor(root, data) {
         this.#node = root;
         this.#items = this.#node.querySelector('.slider__items');
@@ -29,7 +30,22 @@ class Slider {
         this.#data.forEach(mem => {
             this.#items.append(this.#createMem(mem))
         })
+        for (let i = 0; i < this.#length; i++) {
+            this.#controls.append(this.#createControl(i));
+        }
+        this.#position = 0;
     } 
+    setCurrentSlide(number) {
+        this.#position = number;
+        this.#items.style.transform = `translate(-${100*this.#position}%,0)`
+    }
+    #createControl(index) {
+        const control = document.createElement('div');
+        control.classList.add('slider__control')
+        const span = document.createElement('span');
+        control.append(span);
+        return control
+    }
     #createMem(object) {
         let container = document.createElement('div');
         container.classList.add('slider-item')

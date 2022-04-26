@@ -6,3 +6,31 @@
 body {
     background: #292929;
 }
+.slider {
+    max-width: 90%;
+    overflow: hidden;
+    margin: 0 auto;
+    padding: 1rem;
+    color: #fff;
+}
+.slider-item {
+    flex: 1 0 100%;
+}
+.slider__items {
+    display: flex;
+    transition: 1.5s ease all;
+}
+.slider__controls {
+    display: flex;
+}
+.slider__control {
+    padding: 0.25rem;
+}
+
+.slider__control span {
+    display: flex;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    background: #ffffff;
+}
