@@ -33,17 +33,21 @@ class Slider {
         for (let i = 0; i < this.#length; i++) {
             this.#controls.append(this.#createControl(i));
         }
-        this.#position = 0;
+        this.#setCurrentSlide(0)
     } 
-    setCurrentSlide(number) {
+    #setCurrentSlide(number) {
+        if (document.querySelector('.slider__control._active')) document.querySelector('.slider__control._active').classList.remove('_active')
         this.#position = number;
-        this.#items.style.transform = `translate(-${100*this.#position}%,0)`
+        this.#items.style.transform = `translate(-${100*this.#position}%,0)`;
+        this.#controls.childNodes[number+1].classList.add('_active')
+        
     }
     #createControl(index) {
         const control = document.createElement('div');
         control.classList.add('slider__control')
         const span = document.createElement('span');
         control.append(span);
+        control.addEventListener('click', () => this.#setCurrentSlide(index))
         return control
     }
     #createMem(object) {
