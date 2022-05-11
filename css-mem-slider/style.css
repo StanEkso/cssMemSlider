@@ -6,6 +6,10 @@
 body {
     background: #292929;
 }
+.slider__controls {
+    background: #292929;
+    z-index: 3;
+}
 .slider {
     max-width: 90%;
     overflow: hidden;
@@ -15,6 +19,17 @@ body {
 .slider-item {
     flex: 1 0 100%;
 }
+.slider__captions {
+    grid-area: captions;
+    display: flex;
+    transition: 1.5s ease all;
+}
+.slider-item__caption {
+    flex: 1 0 100%;
+}
+.slider-item__image {
+    flex: 1 0 100%;
+}
 .slider-item__image img {
     max-width: 100%;
     display: block;
@@ -22,10 +37,12 @@ body {
     border-radius: 9px;
 }
 .slider__items {
+    grid-area: items;
     display: flex;
     transition: 1.5s ease all;
 }
 .slider__controls {
+    grid-area: controls;
     display: flex;
 }
 .slider__control {
@@ -49,4 +66,33 @@ body {
 .slider__control._active span {
     background: none;
     border: 2px solid rgb(59, 42, 245);;
+}
+.slider {
+    display: grid;
+}
+@media (min-width: 1280px) {
+    .slider {
+        grid-template-columns: 4fr 1fr;
+        row-gap: 2.5rem;
+        grid-template-areas: "items items"
+        "captions controls";
+    }
+    .slider__items {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+    .slider__controls {
+        justify-content: flex-end;
+    }
+}
+@media (min-width: 320px) and (max-width: 767px) {
+    .slider {
+        row-gap: 1rem;
+        grid-template-areas: "items"
+        "controls"
+        "captions";
+    }
+    .slider__controls {
+        justify-content: center;
+    }
 }
